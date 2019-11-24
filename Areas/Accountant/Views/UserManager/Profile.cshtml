@@ -1,0 +1,146 @@
+﻿@model FloCares.Models.Entities.Accountants
+
+@{
+    ViewData["Title"] = "MyProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@*@using Microsoft.AspNetCore.Identity
+@inject RoleManager<IdentityRole> RoleManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ var user = await UserManager.FindByNameAsync(User.Identity.Name)};*@
+
+<!-- Rounded thumbs -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Accountants</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Accountant" asp-controller="UserManager" asp-action="EditAccountant" asp-route-id="@Model.Id">Edit<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumb thumb-rounded thumb-slide">
+                @*<img src="~/Admin/assets/images/placeholder.jpg" alt="">*@
+                <img src="@Url.Content(Model.ProfilePicture)" alt="">
+                <div class="caption">
+                    <span>
+                        <a href="@Url.Content(Model.ProfilePicture)" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        <a href="@Url.Action("Profile","UserManager")" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="caption text-center">
+                <h6 class="text-semibold no-margin">
+                    @Model.Fullname <small class="display-block">
+                    @*@if (user != null)
+                    {
+                        @(user.)
+                    }
+                    else
+                    {
+
+                    }*@
+                </small>
+            </h6>
+            <ul class="icons-list mt-15">
+                <li><a href="#" data-popup="tooltip" title="Google Drive" data-container="body"><i class="icon-google-drive"></i></a></li>
+                <li><a href="#" data-popup="tooltip" title="Twitter" data-container="body"><i class="icon-twitter"></i></a></li>
+                <li><a href="#" data-popup="tooltip" title="Github" data-container="body"><i class="icon-github"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="col-md-9">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.AccountantReg)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.AccountantReg)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.Fullname)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.Fullname)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.EmailAddress)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.EmailAddress)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.PhoneNo)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.PhoneNo)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.Sex)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.Sex)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <td width="80%">
+                        @Html.DisplayFor(model => model.Status)
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+<!-- /rounded thumbs-->

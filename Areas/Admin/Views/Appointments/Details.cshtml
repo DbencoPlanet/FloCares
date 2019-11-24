@@ -1,0 +1,49 @@
+﻿@model FloCares.Models.Entities.Appointment
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.DeptName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Problem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Problem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
