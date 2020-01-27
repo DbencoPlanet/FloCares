@@ -5,33 +5,63 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Bed Category</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
 
-<div>
-    <h4>BedCategory</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BedNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BedNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BedName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BedName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Admin" asp-controller="BedCategories" asp-action="Edit" asp-route-id="@Model.Id">Edit<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+
+                  
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.BedNumber)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.BedNumber)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.BedName)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.BedName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                    </tr>
+                   
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:30px;"></div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+<!-- /rounded thumbs-->
+

@@ -1,0 +1,135 @@
+﻿@model IEnumerable<FloCares.Models.Entities.Patient>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Style {
+
+   
+}
+
+<!-- Page length options -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Patients</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Patients" asp-controller="UserManager" asp-action="NewPatient">Create New Patient<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <table class="table datatable-show-all table-bordered">
+        <thead>
+            <tr>
+               
+                <th>
+                    S/No
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientReg)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fullname)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MobileNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int sno = 0;
+            }
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @{ sno++; }
+                    @sno
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientReg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                @if (item.Status == FloCares.Models.Entities.EntityStatus.Active)
+                {
+                    <td><span class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</span></td>
+                }
+                else
+                {
+                    <td><span class="label label-danger"> @Html.DisplayFor(modelItem => item.Status)</span></td>
+                }
+
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li> <a asp-action="EditPatient" asp-route-id="@item.Id">Edit</a></li>
+                                <li><a asp-action="Profile" asp-route-id="@item.Id">Details</a></li>
+                                <li> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+
+             
+            </tr>
+            }
+           
+
+        </tbody>
+    </table>
+</div>
+<!-- /page length options -->

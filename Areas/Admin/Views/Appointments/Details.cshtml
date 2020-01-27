@@ -5,45 +5,91 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<!-- Rounded thumbs -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Appointments</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
 
-<div>
-    <h4>Appointment</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Department.DeptName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Doctor)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Doctor.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AppointmentDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AppointmentDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Problem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Problem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Admin" asp-controller="Appointments" asp-action="Edit" asp-route-id="@Model.Id">Edit<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Department.DeptName)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Department.DeptName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            Doctor Name
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Doctor.Fullname)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.AppointmentDate)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.AppointmentDate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Problem)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Problem)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Status)
+                        </td>
+                    </tr>
+                   
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:30px;"></div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+<!-- /rounded thumbs-->
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+﻿@model FloCares.Models.Dtos.DoctorDto
+
+@{
+    ViewData["Title"] = "NewDoctor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Form validation -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">New Doctor</h5>
+
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                @TempData["error"]
+            </div>
+        }
+
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                @TempData["success"]
+            </div>
+        }
+    </div>
+
+    <div class="panel-body">
+        <form method="post" enctype="multipart/form-data" asp-controller="UserManager" asp-action="NewDoctor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <div class="">
+                    @*<p>Upload one or more files using this form:</p>*@
+                    <input type="file" name="files" multiple />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SurName" class="control-label"></label>
+                <input asp-for="SurName" class="form-control" />
+                <span asp-validation-for="SurName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OtherName" class="control-label"></label>
+                <input asp-for="OtherName" class="form-control" />
+                <span asp-validation-for="OtherName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Designation" class="control-label"></label>
+                <input asp-for="Designation" class="form-control" />
+                <span asp-validation-for="Designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNo" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNo" class="control-label"></label>
+                <input asp-for="MobileNo" class="form-control" />
+                <span asp-validation-for="MobileNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Biography" class="control-label"></label>
+                <input asp-for="Biography" class="form-control" />
+                <span asp-validation-for="Biography" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+                <select asp-for="Sex" asp-items="@Html.GetEnumSelectList(typeof(FloCares.Models.Entities.Sex))" class="form-control"></select>
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BloodGroupId" class="control-label"></label>
+                <select asp-for="BloodGroupId" class="form-control" asp-items="ViewBag.BloodGroupId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Education" class="control-label"></label>
+                <input asp-for="Education" class="form-control" />
+                <span asp-validation-for="Education" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="ProfilePicture" class="control-label"></label>
+            <input asp-for="ProfilePicture" class="form-control" />
+            <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="Specialist" class="control-label"></label>
+                <input asp-for="Specialist" class="form-control" />
+                <span asp-validation-for="Specialist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="@Html.GetEnumSelectList(typeof(FloCares.Models.Entities.EntityStatus))" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="text-left">
+                <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-left"></i></button>
+                <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-left"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

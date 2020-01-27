@@ -5,32 +5,75 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+@section Style {
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+
 }
-    </tbody>
-</table>
+
+<!-- Page length options -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Blood Group</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Admin" asp-controller="BloodGroups" asp-action="Create">Create New Blood Group<i class='fa fa-plus fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <table class="table datatable-show-all table-bordered">
+        <thead>
+            <tr>
+
+                <th>
+                    S/No
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int sno = 0;
+            }
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @{ sno++; }
+                    @sno
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td><a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id"><i class='fa fa-edit fa-fw'></i>Edit</a></td>
+                <td> <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id"><i class='fa fa-eye fa-fw'></i>Details</a></td>
+                <td>  <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class='fa fa-minus fa-fw'></i>Delete</a></td>
+                <td></td>
+
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+<!-- /page length options -->
+

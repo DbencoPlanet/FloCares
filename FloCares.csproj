@@ -34,10 +34,10 @@
     <Folder Include="Areas\Accountant\Models\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Doctor\Controllers\" />
-    <Folder Include="Areas\Doctor\Data\" />
-    <Folder Include="Areas\Doctor\Models\" />
-    <Folder Include="Areas\Doctor\Views\" />
+    <Folder Include="Areas\Doctors\Data\" />
+    <Folder Include="Areas\Doctors\Models\" />
+    <Folder Include="Areas\Patients\Data\" />
+    <Folder Include="Areas\Patients\Models\" />
     <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 

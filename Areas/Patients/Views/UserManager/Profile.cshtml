@@ -1,0 +1,218 @@
+﻿@model FloCares.Models.Entities.Patient
+
+@{
+    ViewData["Title"] = "MyProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Patients</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Patients" asp-controller="UserManager" asp-action="EditPatient" asp-route-id="@Model.Id">Edit<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="thumb thumb-rounded thumb-slide">
+                @if (Model.ProfilePicture != "")
+                {
+                    <img src="@Url.Content(Model.ProfilePicture)" alt="">
+                }
+                else if (Model.Sex == FloCares.Models.Entities.Sex.Male)
+                {
+                    <img src="~/Admin/images/avatar5.png" alt="">
+                }
+
+
+                else if (Model.Sex == FloCares.Models.Entities.Sex.Female)
+                {
+                    <img src="~/Admin/images/avatar3.png" alt="">
+                }
+
+                else if (Model.Sex == FloCares.Models.Entities.Sex.Other)
+                {
+                    <img src="~/Admin/images/avatar.png" alt="">
+                }
+
+                else if (Model.Sex == FloCares.Models.Entities.Sex.NONE)
+                {
+                    <img src="~/Admin/images/avatar04.png" alt="">
+                }
+
+                <div class="caption">
+                    <span>
+                        @if (Model.ProfilePicture != "")
+                        {
+                            <a href="@Url.Content(Model.ProfilePicture)" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        }
+
+                        else if (Model.Sex == FloCares.Models.Entities.Sex.Male)
+                        {
+                            <a href="~/Admin/images/avatar5.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        }
+                        else if (Model.Sex == FloCares.Models.Entities.Sex.Female)
+                        {
+                            <a href="~/Admin/images/avatar3.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        }
+
+                        else if (Model.Sex == FloCares.Models.Entities.Sex.Other)
+                        {
+                            <a href="~/Admin/images/avatar.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        }
+
+                        else if (Model.Sex == FloCares.Models.Entities.Sex.NONE)
+                        {
+                            <a href="~/Admin/images/avatar04.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                        }
+
+                        <a href="@Url.Action("Profile","UserManager")" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="caption text-center">
+                <h6 class="text-semibold no-margin">
+                    @Model.Fullname <small class="display-block">
+                    </small>
+                </h6>
+                <ul class="icons-list mt-15">
+                    <li><a href="#" data-popup="tooltip" title="Google Drive" data-container="body"><i class="icon-google-drive"></i></a></li>
+                    <li><a href="#" data-popup="tooltip" title="Twitter" data-container="body"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#" data-popup="tooltip" title="Github" data-container="body"><i class="icon-github"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row" style="padding-top:30px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.PatientReg)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.PatientReg)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Fullname)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Fullname)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.EmailAddress)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.EmailAddress)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.PhoneNo)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.PhoneNo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.MobileNo)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.MobileNo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Sex)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Sex)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </th>
+                        <td width="80%">
+                            @if (Model.DOB != null)
+                            {
+                                @Html.DisplayFor(model => model.DOB)
+                            }
+                            else
+                            {
+
+                            }
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            Blood Group
+                        </th>
+                        <td width="80%">
+                            @if (Model.BloodGroup.Name != null)
+                            {
+                                @Html.DisplayFor(model => model.BloodGroup.Name)
+                            }
+                            else
+                            {
+
+                            }
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Address)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Status)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div style="padding-bottom:30px;"></div>
+</div>
+
+<!-- /rounded thumbs-->

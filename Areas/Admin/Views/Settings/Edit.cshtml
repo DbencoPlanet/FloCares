@@ -2,23 +2,72 @@
 
 @{
     ViewData["Title"] = "Edit";
-   
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
-<h2>Edit</h2>
+<!-- Form validation -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Setting</h5>
 
-<h4>Setting</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                @TempData["error"]
+            </div>
+        }
+
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                @TempData["success"]
+            </div>
+        }
+    </div>
+
+    <div class="panel-body">
+        <form asp-action="Edit" enctype="multipart/form-data" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Favicon" />
+            <input type="hidden" asp-for="Logo" />
+
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input type="file" name="logo" class="file-styled" multiple>
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Favicon" class="control-label"></label>
+                <input type="file" name="favicon" class="file-styled" multiple>
+                <span asp-validation-for="Favicon" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="ApplicationTitle" class="control-label"></label>
                 <input asp-for="ApplicationTitle" class="form-control" />
                 <span asp-validation-for="ApplicationTitle" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Initial" class="control-label"></label>
+                <input asp-for="Initial" class="form-control" />
+                <span asp-validation-for="Initial" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
@@ -29,37 +78,31 @@
                 <input asp-for="PhoneNo" class="form-control" />
                 <span asp-validation-for="PhoneNo" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Favicon" class="control-label"></label>
-                <input asp-for="Favicon" class="form-control" />
-                <span asp-validation-for="Favicon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control" />
-                <span asp-validation-for="Logo" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="Favicon" class="control-label"></label>
+            <input asp-for="Favicon" class="form-control" />
+            <span asp-validation-for="Favicon" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="Logo" class="control-label"></label>
+            <input asp-for="Logo" class="form-control" />
+            <span asp-validation-for="Logo" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="Currency" class="control-label"></label>
                 <input asp-for="Currency" class="form-control" />
                 <span asp-validation-for="Currency" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Initial" class="control-label"></label>
-                <input asp-for="Initial" class="form-control" />
-                <span asp-validation-for="Initial" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+            <div class="text-left">
+                <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-left"></i></button>
+                <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-left"></i></button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

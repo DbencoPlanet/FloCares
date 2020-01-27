@@ -5,6 +5,7 @@ using FloCares.Models;
 using FloCares.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using FloCares.Models.Dtos;
 
 namespace FloCares.Data
 {
@@ -46,5 +47,6 @@ namespace FloCares.Data
         public DbSet<Nurse> Nurse { get; set; }
         public DbSet<Pharmacist> Pharmacists { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
+        public DbSet<FloCares.Models.Dtos.PatientDto> PatientDto { get; set; }
     }
 }

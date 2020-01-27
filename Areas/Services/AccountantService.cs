@@ -93,8 +93,16 @@ namespace FloCares.Areas.Services
 
         public async Task Edit(Accountants model, List<IFormFile> files)
         {
-            var fileName = await _upload.UploadFile(files, _env);
-            model.ProfilePicture = "/Uploads/" + fileName;
+            if (files.Count == 0)
+            {
+                model.ProfilePicture = model.ProfilePicture;
+             
+            }
+            else
+            {
+                var fileName = await _upload.UploadFile(files, _env);
+                model.ProfilePicture = "/Uploads/" + fileName;
+            }
             _context.Entry(model).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }

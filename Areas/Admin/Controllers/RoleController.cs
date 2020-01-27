@@ -21,7 +21,8 @@ namespace FloCares.Areas.Admin.Controllers
             userManager = userMrg;
         }
 
-        public ViewResult Index() => View(roleManager.Roles.Where(x=>x.Name != "SuperAdmin").OrderBy(x=>x.Name));
+
+        public ViewResult Index() => View(roleManager.Roles.Where(x => x.Name != "SuperAdmin").OrderBy(x => x.Name));
 
         public IActionResult Create() => View();
 
@@ -32,10 +33,13 @@ namespace FloCares.Areas.Admin.Controllers
             {
                 IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
+
                     return RedirectToAction("Index");
                 else
                     Errors(result);
+                TempData["success"] = "Role Added Successfully";
             }
+            TempData["error"] = "Creation of newRole not successful";
             return View(name);
         }
 
@@ -47,9 +51,11 @@ namespace FloCares.Areas.Admin.Controllers
             {
                 IdentityResult result = await roleManager.DeleteAsync(role);
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    
+                return RedirectToAction("Index");
                 else
                     Errors(result);
+               
             }
             else
                 ModelState.AddModelError("", "No role found");

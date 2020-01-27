@@ -5,56 +5,115 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BedCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Capacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Charge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BedCategory.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Charge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@section Style {
+
+
 }
-    </tbody>
-</table>
+
+<!-- Page length options -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Beds</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Admin" asp-controller="Beds" asp-action="Create">Create New Bed<i class='fa fa-plus fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <table class="table datatable-show-all table-bordered">
+        <thead>
+            <tr>
+
+                <th>
+                    S/No
+                </th>
+                <th>
+                    Bed Category
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Charge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int sno = 0;
+            }
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @{ sno++; }
+                    @sno
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BedCategory.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Charge)
+                </td>
+             
+
+                @if (item.Status == FloCares.Models.Entities.EntityStatus.Active)
+                {
+                    <td><span class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</span></td>
+                }
+                else
+                {
+                    <td><span class="label label-danger"> @Html.DisplayFor(modelItem => item.Status)</span></td>
+                }
+
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li> <a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                                <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                                <li> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+
+
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+<!-- /page length options -->
+

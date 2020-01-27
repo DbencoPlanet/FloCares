@@ -244,6 +244,8 @@ namespace FloCares.Data.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<int>("Status");
+
                     b.HasKey("Id");
 
                     b.ToTable("BedCategory");

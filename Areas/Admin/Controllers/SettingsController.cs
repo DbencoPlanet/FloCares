@@ -7,17 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FloCares.Data;
 using FloCares.Models.Entities;
+using Microsoft.AspNetCore.Http;
+using FloCares.Areas.Interface;
+using Microsoft.AspNetCore.Hosting;
+using FloCares.Areas.Services;
 
 namespace FloCares.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SettingsController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public SettingsController(ApplicationDbContext context)
+        private readonly IUpload _upload;
+        private readonly IHostingEnvironment _env;
+        private readonly ApplicationDbContext _context;
+        private readonly ISetting _seting;
+
+        public SettingsController (ApplicationDbContext context,
+            ISetting seting,
+            IUpload upload,
+            IHostingEnvironment env)
+          
         {
+
+            _seting = seting;
+            _upload = upload;
+            _env = env;
             _context = context;
+          
+
         }
 
         // GET: Admin/Settings
@@ -55,12 +73,13 @@ namespace FloCares.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationTitle,EmailAddress,PhoneNo,Favicon,Logo,Currency,Initial")] Setting setting)
+        public async Task<IActionResult> Create(Setting setting, List<IFormFile> logo, List<IFormFile> favicon)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(setting);
-                await _context.SaveChangesAsync();
+                //_context.Add(setting);
+                //await _context.SaveChangesAsync();
+                await _seting.Create(setting, logo, favicon);
                 return RedirectToAction(nameof(Index));
             }
             return View(setting);
@@ -87,7 +106,7 @@ namespace FloCares.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationTitle,EmailAddress,PhoneNo,Favicon,Logo,Currency,Initial")] Setting setting)
+        public async Task<IActionResult> Edit(int id, Setting setting, List<IFormFile> logo, List<IFormFile> favicon)
         {
             if (id != setting.Id)
             {
@@ -98,8 +117,10 @@ namespace FloCares.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(setting);
-                    await _context.SaveChangesAsync();
+                    //_context.Update(setting);
+                    //await _context.SaveChangesAsync();
+
+                    await _seting.Edit(setting, logo, favicon);
                 }
                 catch (DbUpdateConcurrencyException)
                 {

@@ -82,11 +82,16 @@ namespace FloCares
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped<IAccountant, AccountantService>();
-            services.AddScoped<IUpload, UploadService>();
-
+           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddControllersAsServices();
+
+
+            services.AddScoped<IAccountant, AccountantService>();
+            services.AddScoped<IUpload, UploadService>();
+            services.AddScoped<IDoctor, DoctorService>();
+            services.AddScoped<ISetting, SettingService>();
+            services.AddScoped<IPatient, PatientService>();
 
             // Add application services.
             //services.AddTransient<IAccountant, AccountantService>();

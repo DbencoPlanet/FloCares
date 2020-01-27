@@ -19,5 +19,8 @@ namespace FloCares.Models.Entities
         [Display(Name = "Description")]
         public string Description { get; set; }
 
+        [Display(Name = "Status")]
+        public EntityStatus Status { get; set; }
+
     }
 }

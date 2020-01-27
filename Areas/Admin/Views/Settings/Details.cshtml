@@ -2,59 +2,110 @@
 
 @{
     ViewData["Title"] = "Details";
+     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Settings</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
 
-<div>
-    <h4>Setting</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationTitle)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationTitle)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Favicon)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Favicon)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Currency)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Currency)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Initial)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Initial)
-        </dd>
-    </dl>
+    <div class="panel-body">
+        <div class="btn-group pull-right">
+
+            <a class="btn btn-success" asp-area="Admin" asp-controller="Settings" asp-action="Edit" asp-route-id="@Model.Id">Edit<i class='fa fa-edit fa-fw'></i> </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.ApplicationTitle)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.ApplicationTitle)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Initial)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Initial)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.EmailAddress)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.EmailAddress)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.PhoneNo)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.PhoneNo)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Favicon)
+                        </th>
+                        <td width="80%">
+                            <img src="@Url.Content(Model.Favicon)" height="80" width="80"></img>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Logo)
+                        </th>
+                        <td width="80%">
+                            <img src="@Url.Content(Model.Logo)" height="80" width="80"></img>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="20%">
+                            @Html.DisplayNameFor(model => model.Currency)
+                        </th>
+                        <td width="80%">
+                            @Html.DisplayFor(model => model.Currency)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:30px;"></div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+<!-- /rounded thumbs-->
+
+
+
+
+
+
+
+
+
